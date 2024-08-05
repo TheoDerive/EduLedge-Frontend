@@ -1,17 +1,21 @@
 import Navbar from "../component/Navbar.tsx";
 import {useEffect, useRef, useState} from "react";
-import Article from "../utils/Article.ts";
 import {ArticleType} from "../type/ArticleType.ts";
 import BigArticle from "../component/BigArticle.tsx";
+import {CATEGORIES} from "../utils/VarUtil.tsx";
+import ArticlesFiltered from "../component/ArticlesFiltered.tsx";
+import {useStore} from "../hooks/useStore.ts";
+import {CategorieType} from "../type/UtilsType.ts";
 
 export default function Homepage() {
     const [bigArticle, setBigArticle] = useState<ArticleType[]>([]);
-
     const bigArticleContainer = useRef<HTMLElement>(null);
 
+    const {allArticles} = useStore()
+
     useEffect(() => {
-        Article.getAllArticle().then(res => setBigArticle(res.slice(0, 3)))
-    }, [])
+        setBigArticle(allArticles.slice(0, 3))
+    }, [allArticles]);
 
 
     useEffect(() => {
@@ -38,11 +42,18 @@ export default function Homepage() {
             <section ref={bigArticleContainer} className={"big-article-container"}>
                 {
                     bigArticle ?
-                        bigArticle.map(article => <BigArticle bigArticle={article} /> )
+                        bigArticle.map((article, i) => <BigArticle key={i} bigArticle={article} /> )
                         :
                         null
                 }
+            </section>
 
+            <section className="articles-filtered-by-categories">
+                {
+                    CATEGORIES.map((categorie: CategorieType, i: number) =>
+                        <ArticlesFiltered key={i} categorie={categorie} />
+                    )
+                }
             </section>
         </>
     )

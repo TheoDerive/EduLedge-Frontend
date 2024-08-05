@@ -1,4 +1,4 @@
-import {CATEGORIES} from "../utils/VarUtil.ts";
+import {CATEGORIES} from "../utils/VarUtil.tsx";
 import {useEffect, useState} from "react";
 import { NewArticleType} from "../type/ArticleType.ts";
 import Article from "../utils/Article.ts";
@@ -71,7 +71,7 @@ export default function CreateArticle(){
                 categorie: e.target.value,
             }))} value={articleInfo.categorie} name="categorie">
                 {
-                    CATEGORIES.map(c => <option value={c}>{c}</option>)
+                    CATEGORIES.map(c => <option value={c.name}>{c.name}</option>)
                 }
             </select>
 

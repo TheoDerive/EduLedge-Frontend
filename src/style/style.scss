@@ -10,15 +10,19 @@
   color: unset;
   list-style-type: none;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 html {
   width: 100vw;
-  position: relative;
   overflow-x: hidden;
+  position: relative;
   font-size: 18px;
 }
 
+svg {
+  fill: $secondary;
+}
 
 
 // Navbar
@@ -29,8 +33,8 @@ html {
   left: 0;
   transform: translateY(-50%);
   background: $primary;
-  width: 6%;
-  height: 30%;
+  width: 7%;
+  height: 35%;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 
@@ -65,13 +69,29 @@ html {
   }
 
   .onglet-container {
+    position: relative;
+    top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    gap: 40px;
+    gap: 50px;
+  }
+
+  .tokens-limit {
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    p {
+      position: relative;
+      font-family: $important;
+      top: 5px;
+    }
   }
 
   .onglet {
@@ -110,6 +130,332 @@ html {
   }
 }
 
+// Connection
+.login-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.login-left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+
+  .login-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    .login-title {
+      font-size: 2rem;
+      font-family: $title;
+    }
+
+    .login-sub-title {
+      font-family: $texte;
+      opacity: .7;
+    }
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 70%;
+
+    .input-container{
+      width: 100%;
+      position: relative;
+
+      .user-icon, .password-icon{
+        position: absolute;
+        top: 55%;
+        left: 10px;
+        transform: translateY(-50%);
+        width: 25px;
+
+        svg {
+          transition: all .3s;
+        }
+      }
+    }
+
+    input {
+      border-radius: 10px;
+      background: lightgray;
+      width: 100%;
+      outline: none;
+      border: 3px solid lightgrey;
+      font-size: 1.15rem;
+      font-family: $texte;
+      padding: 12px 5px 12px 40px;
+      transition: all .3s;
+
+      &:focus{
+        border: 3px solid $secondary;
+      }
+
+      &::placeholder {
+        font-weight: bold;
+      }
+
+    }
+
+    .input-erreur {
+      background: rgba($color: red, $alpha: .3);
+      border-color: red !important;
+      color: red;
+    }
+
+    .icon-erreur svg {
+      fill: red;
+    }
+
+    .erreur{
+      margin-top: -20px;
+      color: red;
+      font-family: $important;
+    }
+
+    a {
+      font-family: $texte;
+      text-decoration: underline;
+      margin-left: auto;
+    }
+
+    .login-form-valid {
+      font-size: 1.3rem;
+      font-family: $important;
+      font-weight: bold;
+      padding: 20px;
+      background: $secondary;
+      color: $primary;
+      border: 3px solid $secondary;
+      outline: 0;
+      border-radius: 20px;
+      transition: .2s ;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+
+      .arrow-icon{
+        position: relative;
+        top: 2px;
+        width: 35px;
+
+        svg path {
+          fill: $primary;
+        }
+      }
+
+      &:hover {
+        background: $primary;
+        border-color: $secondary;
+        color: $secondary;
+        gap: 20px;
+
+        .arrow-icon svg path {
+            fill: $secondary;
+        }
+      }
+    }
+
+    .login-signin {
+      font-family: $texte;
+      text-decoration: underline;
+      margin: auto;
+      cursor: pointer
+    }
+  }
+}
+
+.login-right {
+  width: 50%;
+  overflow: hidden;
+
+  .big-article-container{
+    width: 300%;
+    height: 100%;
+
+    .big-article .big-article-save-container {
+      display: none;
+    }
+
+    .big-article .big-article-image {
+      height: 110%;
+      width: unset;
+    }
+  }
+}
+
+// Inscrition
+.signin-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.signin-right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+
+  .signin-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    .signin-title {
+      font-size: 2rem;
+      font-family: $title;
+    }
+
+    .signin-sub-title {
+      font-family: $texte;
+      opacity: .7;
+    }
+  }
+
+  .signin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 70%;
+
+    .input-container{
+      width: 100%;
+      position: relative;
+
+      .user-icon, .password-icon{
+        position: absolute;
+        top: 55%;
+        left: 10px;
+        transform: translateY(-50%);
+        width: 25px;
+
+        svg {
+          transition: all .3s;
+        }
+      }
+    }
+
+    input {
+      border-radius: 10px;
+      background: lightgray;
+      width: 100%;
+      outline: none;
+      border: 3px solid lightgrey;
+      font-size: 1.15rem;
+      font-family: $texte;
+      padding: 12px 5px 12px 40px;
+      transition: all .3s;
+
+      &:focus{
+        border: 3px solid $secondary;
+      }
+
+      &::placeholder {
+        font-weight: bold;
+      }
+
+    }
+
+    .input-erreur {
+      background: rgba($color: red, $alpha: .3);
+      border-color: red !important;
+      color: red;
+    }
+
+    .icon-erreur svg {
+      fill: red;
+    }
+
+    .erreur{
+      margin-top: -20px;
+      color: red;
+      font-family: $important;
+    }
+
+    .signin-form-valid {
+      font-size: 1.3rem;
+      font-family: $important;
+      font-weight: bold;
+      padding: 20px;
+      background: $secondary;
+      color: $primary;
+      border: 3px solid $secondary;
+      outline: 0;
+      border-radius: 20px;
+      transition: .2s ;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+
+      .arrow-icon{
+        position: relative;
+        top: 2px;
+        width: 35px;
+
+        svg path {
+          fill: $primary;
+        }
+      }
+
+      &:hover {
+        background: $primary;
+        border-color: $secondary;
+        color: $secondary;
+        gap: 20px;
+
+        .arrow-icon svg path {
+          fill: $secondary;
+        }
+      }
+    }
+
+    .signin-login {
+      font-family: $texte;
+      text-decoration: underline;
+      margin: auto;
+      cursor: pointer
+    }
+  }
+}
+
+.signin-left {
+  width: 50%;
+  overflow: hidden;
+
+  .big-article-container{
+    width: 300%;
+    height: 100%;
+
+    .big-article .big-article-save-container {
+      display: none;
+    }
+
+    .big-article .big-article-image {
+      height: 110%;
+      width: unset;
+    }
+  }
+}
 
 //Big Article
 .big-article-container {
@@ -206,7 +552,7 @@ html {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-47%, -55%);
+      transform: translate(-50%, -55%);
       fill: $primary;
       width: 50%;
     }
@@ -223,6 +569,7 @@ html {
     border-top-left-radius: 20px;
     font-family: $texte;
     margin-right: 10px;
+    text-decoration: underline;
 
     &::before {
       content: "";
@@ -238,5 +585,160 @@ html {
       box-shadow: 0 10px 0 0 $primary;
     }
   }
+}
 
+// Article Component
+
+.article-component{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 700px;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: all .3s ease-in-out;
+  transform: scale(0.8);
+  gap: 10px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transform: scale(0.85);
+  }
+
+  .article-component-image-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    .article-component-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 110%;
+    }
+  }
+
+  .article-component-save-container {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: $secondary;
+    border-radius: 50%;
+    padding: 10px;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-47%, -55%);
+      fill: $primary;
+      width: 50%;
+    }
+  }
+
+  .article-component-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .article-component-title {
+      font-family: $title;
+      text-decoration: underline;
+      font-size: 1.4rem;
+    }
+
+    .article-component-ca {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .article-component-author {
+        font-family: $texte;
+        font-size: 1.3rem;
+      }
+
+      .article-component-categorie {
+        padding: 10px 25px;
+        border-radius: 20px;
+        background: $secondary;
+        color: $primary;
+        font-family: $important;
+        font-size: 1rem;
+      }
+
+    }
+  }
+}
+
+//Article Filtered
+.articles-filtered-by-categories {
+  position: relative;
+  left: 120px;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.articles-filtered-section{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+
+  h3{
+    position: absolute;
+    top: -20px;
+    left: 80px;
+    font-family: $title;
+    font-size: 2rem;
+
+    .article-filtered-icon {
+      position: absolute;
+      top: 5px;
+      right: -50px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+}
+
+.articles-filtered-container {
+  width: 92vw;
+  overflow: auto;
+  margin-left: -40px;
+
+  &::-webkit-scrollbar-track
+  {
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar
+  {
+    background: transparent;
+    height: 7px;
+  }
+
+  .articles-filtered {
+    display: flex;
+    gap: 50px;
+  }
 }

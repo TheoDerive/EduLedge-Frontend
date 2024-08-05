@@ -1,4 +1,4 @@
-import {BACKEND_URL} from "./VarUtil.ts";
+import {BACKEND_URL} from "./VarUtil.tsx";
 import {ArticleType, NewArticleType} from "../type/ArticleType.ts";
 
 const Article = {
@@ -7,14 +7,8 @@ const Article = {
             .then(res => res.json())
             .catch(err => console.error(err));
     },
-    parseImageBase64: async (formData: FormData) => {
-        return await fetch(`http://${BACKEND_URL}/article/middleware/parse-image`, {
-            method: "POST",
-            body: formData
-        })
-            .then(res => res.json())
-            .catch(err => console.error(err));
-    },
+
+    // Need Middleware
     newArticle: async (article: NewArticleType) => {
         return await fetch(`http://${BACKEND_URL}/article/new-article`, {
             method: "POST",
