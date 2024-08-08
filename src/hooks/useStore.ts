@@ -9,6 +9,9 @@ export const useStore = create<useStoreInterface>((set) => ({
     allArticles: [],
     setAllArticles: (allArticles: ArticleType[]) => set({allArticles}),
 
+    allSaves: [],
+    setAllSaves: (allSaves: ArticleType[]) => set({allSaves}),
+
     user: {
         _id: new Mongoose.Types.ObjectId(),
         username: "",

@@ -20,3 +20,7 @@ export type UserInscriptionType = {
     email: string,
     password: string
 }
+
+export type FindUser = {
+    user_id: ObjectId
+}

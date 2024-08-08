@@ -1,7 +1,8 @@
 import {BACKEND_URL} from "./VarUtil.tsx";
+import {ObjectId} from "mongodb";
 
 const Middleware = {
-    verifTokens: async (user_id: string) => {
+    verifTokens: async (user_id: ObjectId) => {
         const data = {
             user_id
         }
@@ -17,7 +18,7 @@ const Middleware = {
             .catch(err => console.log(err));
     },
 
-    canPass: async (user_id: string) => {
+    canPass: async (user_id: ObjectId) => {
         const data = {
             user_id
         }

@@ -1,14 +1,51 @@
 import {ArticleType} from "../type/ArticleType.ts";
 import {StarsIcon} from "./Icon.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import Middleware from "../utils/Middleware.ts";
+import {useStore} from "../hooks/useStore.ts";
+import Saves from "../utils/Saves.ts";
 
-export default function ArticleComponent({ article } : { article: ArticleType }) {
+export default function ArticleComponent({ article} : { article: ArticleType}) {
     const [isSaved, setIsSaved] = useState<boolean>(false);
+
+    const {user, allSaves, setAllSaves} = useStore()
+
+    useEffect(() => {
+        allSaves.forEach(articleSave => {
+            if (article.title === articleSave.title) {
+                setIsSaved(true)
+            }
+        })
+    }, []);
+
 
     function save(){
         setIsSaved(!isSaved)
 
-        // TODO: Ajouter les saves dans la db ou le localStorage
+        if(!isSaved){
+            Middleware.canPass(user._id).then(res => {
+                if(res.code === 200) {
+                    Saves.saveNewArticle(user._id, article._id)
+                        .then(res => console.log(res))
+
+                    Saves.getAllSavesArticles(user._id).then(res => {
+                        setAllSaves(res)
+                        console.log("recup")
+                    })
+                }
+            })
+        }else {
+            Saves.removeSaveArticle(user._id, article._id)
+                .then(res => console.log('removed'))
+
+            Saves.getAllSavesArticles(user._id).then(res => {
+                setAllSaves(res)
+                console.log("recup")
+            })
+        }
+
+
+
     }
 
     return (

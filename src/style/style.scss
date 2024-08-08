@@ -208,18 +208,18 @@ svg {
     }
 
     .input-erreur {
-      background: rgba($color: red, $alpha: .3);
-      border-color: red !important;
-      color: red;
+      background: rgba($color: #FF6F61, $alpha: .3);
+      border-color: #FF6F61!important;
+      color: #FF6F61;
     }
 
     .icon-erreur svg {
-      fill: red;
+      fill: #FF6F61;
     }
 
     .erreur{
       margin-top: -20px;
-      color: red;
+      color: #FF6F61;
       font-family: $important;
     }
 
@@ -375,18 +375,18 @@ svg {
     }
 
     .input-erreur {
-      background: rgba($color: red, $alpha: .3);
-      border-color: red !important;
-      color: red;
+      background: rgba($color: #FF6F61, $alpha: .3);
+      border-color: #FF6F61 !important;
+      color: #FF6F61;
     }
 
     .icon-erreur svg {
-      fill: red;
+      fill: #FF6F61;
     }
 
     .erreur{
       margin-top: -20px;
-      color: red;
+      color: #FF6F61;
       font-family: $important;
     }
 

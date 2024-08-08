@@ -1,12 +1,13 @@
 import React, {ChangeEvent, useEffect, useRef, useState} from "react";
 
-import {UserConnectionType, UserInscriptionType} from "../type/UserType.ts";
+import {UserConnectionType, UserInscriptionType, UserType} from "../type/UserType.ts";
 import BigArticle from "../component/BigArticle.tsx";
 import {ArticleType} from "../type/ArticleType.ts";
 import {useStore} from "../hooks/useStore.ts";
 import {ArrowIcon, EmailIcon, PasswordIcon, UserIcon} from "../component/Icon.tsx";
 import User from "../utils/User.ts";
 import {useNavigate} from "react-router-dom";
+import Saves from "../utils/Saves.ts";
 
 export default function Logpage(){
     const [isLogin, setIsLoggedIn] = useState(true);
@@ -35,7 +36,7 @@ export function Login({ setIsLoggedIn } : { setIsLoggedIn : (bool: boolean) => v
         message: "Veuillez entre votre adresse email"
     })
 
-    const {allArticles, setUser} = useStore()
+    const {allArticles, setUser, setAllSaves} = useStore()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -93,8 +94,15 @@ export function Login({ setIsLoggedIn } : { setIsLoggedIn : (bool: boolean) => v
 
         User.connection(userVar).then(res => {
             if (res.status === 200) {
-                setUser(res.result)
-                navigate("/")
+                const user: UserType = res.result
+                setUser(user)
+
+                sessionStorage.setItem("user_id", JSON.stringify(user._id))
+
+                Saves.getAllSavesArticles(user._id).then(res => {
+                    setAllSaves(res)
+                    navigate("/")
+                })
             }
 
             const message: string = res.message
@@ -190,7 +198,8 @@ export function Signin({ setIsLoggedIn } : { setIsLoggedIn : (bool: boolean) => 
     const [bigArticle, setBigArticle] = useState<ArticleType[]>([]);
     const bigArticleContainer = useRef<HTMLElement>(null);
 
-    const {allArticles, setUser} = useStore()
+    const {allArticles, setUser, setAllSaves} = useStore()
+    const navigate = useNavigate()
 
     useEffect(() => {
         setBigArticle(allArticles.slice(0, 3))
@@ -256,8 +265,15 @@ export function Signin({ setIsLoggedIn } : { setIsLoggedIn : (bool: boolean) => 
         User.inscription(userVar).then(res => {
             console.log(res)
             if (res.status === 200) {
-                setUser(res.result)
-                return
+                const user: UserType = res.result
+                setUser(user)
+
+                sessionStorage.setItem("user_id", JSON.stringify(user._id))
+
+                Saves.getAllSavesArticles(user._id).then(res => {
+                    setAllSaves(res)
+                    navigate("/")
+                })
             }
 
             const message: string = res.message
